@@ -17,6 +17,9 @@ if [ ! -z "$WWWUSER" ] && [ ! -z "$WWWGROUP" ]; then
     groupmod -g "$WWWGROUP" www-data
 fi
 
+echo "Configuring Git safe directory..."
+git config --global --add safe.directory /var/www
+
 echo "Switching to www-data user..."
 if command -v gosu > /dev/null; then
     exec gosu www-data "$@"
